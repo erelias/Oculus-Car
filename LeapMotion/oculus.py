@@ -49,7 +49,7 @@ class SampleListener(Leap.Listener):
 		for gest in frame.gestures():
 			if(gest.type == Leap.Gesture.TYPE_CIRCLE):
 				print "Go back"
-				payload = {'left': 'B140', 'right': 'B140'}
+				payload = {'left': 'B200', 'right': 'B200'}
 				r = requests.post("http://oculuscar.herokuapp.com/", data=payload)
 				import time
 				time.sleep(2)
