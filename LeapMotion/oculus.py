@@ -49,7 +49,7 @@ class SampleListener(Leap.Listener):
 		for gest in frame.gestures():
 			if(gest.type == Leap.Gesture.TYPE_CIRCLE):
 				print "Go back"
-				payload = {'left': 'B200', 'right': 'B200'}
+				payload = {'left': 'B255', 'right': 'B255'}
 				r = requests.post("http://oculuscar.herokuapp.com/", data=payload)
 				import time
 				time.sleep(2)
@@ -77,15 +77,15 @@ class SampleListener(Leap.Listener):
 			print pos
 			handtype = 0 if hand.is_left else 1
 			if pos[handtype][1]/pos[1-handtype][1] > 1.25:
-				payload = {'left': "F000", 'right': "F185"}
+				payload = {'left': "F000", 'right': "F255"}
 				r = requests.post("http://oculuscar.herokuapp.com/", data=payload)
 				print "Turn left"
 			elif pos[1-handtype][1]/pos[handtype][1] > 1.25:
-				payload = {'left': "F185", 'right': "F000"}
+				payload = {'left': "F255", 'right': "F000"}
 				r = requests.post("http://oculuscar.herokuapp.com/", data=payload)
 				print "Turn right"
 			else:
-				payload = {'left': "F185", 'right': "F185"}
+				payload = {'left': "F255", 'right': "F255"}
 				r = requests.post("http://oculuscar.herokuapp.com/", data=payload)
 				print "Straight"
 			#left = 110+int(145*pos[0][1]/(pos[0][1]+ pos[1][1]))
